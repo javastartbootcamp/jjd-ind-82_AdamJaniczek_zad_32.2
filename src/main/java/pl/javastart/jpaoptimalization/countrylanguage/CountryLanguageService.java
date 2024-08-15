@@ -23,4 +23,10 @@ public class CountryLanguageService {
         countryLanguageList.sort(comparator);
         return countryLanguageList;
     }
+
+    public List<LanguageCountryDto> findLanguageAndCountryName() {
+        List<LanguageCountryDto> result = countryLanguageRepository.findLanguageAndCountryName();
+        result.sort(Comparator.comparing(LanguageCountryDto::getLanguage));
+        return result;
+    }
 }

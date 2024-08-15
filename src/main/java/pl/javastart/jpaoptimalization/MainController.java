@@ -7,6 +7,7 @@ import pl.javastart.jpaoptimalization.country.Country;
 import pl.javastart.jpaoptimalization.country.CountryService;
 import pl.javastart.jpaoptimalization.countrylanguage.CountryLanguage;
 import pl.javastart.jpaoptimalization.countrylanguage.CountryLanguageService;
+import pl.javastart.jpaoptimalization.countrylanguage.LanguageCountryDto;
 
 import java.util.Comparator;
 import java.util.List;
@@ -42,10 +43,8 @@ public class MainController {
 
     @GetMapping("/jezyki-i-kraje")
     public String languagesWithCountries(Model model) {
-        List<CountryLanguage> languages = countryLanguageService.findAll(Comparator.comparing(CountryLanguage::getLanguage));
-
+        List<LanguageCountryDto> languages = countryLanguageService.findLanguageAndCountryName();
         model.addAttribute("languages", languages);
-
         return "languagesWithCountries";
     }
 
