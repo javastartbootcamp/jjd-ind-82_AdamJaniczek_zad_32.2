@@ -1,5 +1,7 @@
 package pl.javastart.jpaoptimalization.country;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import pl.javastart.jpaoptimalization.city.City;
 import pl.javastart.jpaoptimalization.countrylanguage.CountryLanguage;
 
@@ -55,10 +57,12 @@ public class Country {
     @Column(name = "Code2")
     private String code2;
 
+    @Fetch(FetchMode.SUBSELECT)
     @OrderBy("Population DESC")
     @OneToMany(mappedBy = "country")
     private Collection<City> cities;
 
+    @Fetch(FetchMode.SUBSELECT)
     @OrderBy("Percentage DESC")
     @OneToMany
     @JoinColumn(name = "countryCode")
